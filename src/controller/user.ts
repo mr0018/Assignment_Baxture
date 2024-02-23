@@ -8,6 +8,12 @@ import { saveDataInFile } from "../util/file-write";
 
 const users: any[] = JSON.parse(fs.readFileSync(path.join(__dirname, '../../database/users.json'), 'utf-8') || '[]');
 
+/**
+ * Creates a new user.
+ * @param {Request} req - The request object containing user data.
+ * @param {Response} res - The response object to send the result.
+ */
+
 export const createUser = async (req: Request, res: Response) => {
     try {
         const { body } = req;
@@ -22,6 +28,11 @@ export const createUser = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Updates an existing user.
+ * @param {Request} req - The request object containing user id and updated data.
+ * @param {Response} res - The response object to send the result.
+ */
 export const updateUser = async (req: Request, res: Response) => {
     try {
         const { params: { userId }, body } = req;
@@ -43,8 +54,13 @@ export const updateUser = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send({ message: 'An unexpected error has occurred. Please try again. If the problem persists, please contact to support.' });
     }
-}
+};
 
+/**
+ * Retrieves all users.
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object to send the result.
+ */
 export const getUsers = async (req: Request, res: Response) => {
     try {
         const user_data = users.filter(user => !user.deleted);
@@ -54,6 +70,11 @@ export const getUsers = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Retrieves a specific user by id.
+ * @param {Request} req - The request object containing the user id.
+ * @param {Response} res - The response object to send the result.
+ */
 export const getUser = async (req: Request, res: Response) => {
     try {
         const { params: { userId } } = req;
@@ -67,6 +88,11 @@ export const getUser = async (req: Request, res: Response) => {
     }
 };
 
+/**
+ * Deletes a user by id.
+ * @param {Request} req - The request object containing the user id.
+ * @param {Response} res - The response object to send the result.
+ */
 export const deleteUser = async (req: Request, res: Response) => {
     try {
         const { params: { userId } } = req;

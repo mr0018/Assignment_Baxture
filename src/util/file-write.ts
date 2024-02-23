@@ -12,4 +12,4 @@ export const saveDataInFile = async (data: any) => {
     } catch (error) {
         throw error;
     }
-}
+};
